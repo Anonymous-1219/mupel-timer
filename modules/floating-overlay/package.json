@@ -1,0 +1,11 @@
+{
+  "name": "floating-overlay",
+  "version": "1.0.0",
+  "description": "Mupel Clock native floating timer overlay (Android)",
+  "main": "index.ts",
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}
