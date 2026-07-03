@@ -135,15 +135,21 @@ export default function TimerScreen() {
   };
 
   const beginCountdown = async (seconds) => {
-    endTimeRef.current = Date.now() + seconds * 1000;
-    setTotalSeconds(seconds);
-    setRemaining(seconds);
-    setStatus("running");
-    startInterval();
-    await requestNotificationPermissions();
-    notifIdRef.current = await scheduleCompletionNotification(seconds);
-    await showRunningNotification(formatClock(seconds));
-  };
+      endTimeRef.current = Date.now() + seconds * 1000;
+        setTotalSeconds(seconds);
+          setRemaining(seconds);
+            setStatus("running");
+              startInterval();
+
+                try {
+                    await requestNotificationPermissions();
+                        notifIdRef.current = await scheduleCompletionNotification(seconds);
+                            await showRunningNotification(formatClock(seconds));
+                              } catch (e) {
+                                  console.warn("Notification setup failed, timer will still run:", e);
+                                    }
+                                    };
+  }
 
   const handleStart = () => {
     const mins = parseFloat(inputMinutes);

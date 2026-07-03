@@ -45,15 +45,18 @@ export async function clearRunningNotification() {
 
 // Fired when the countdown reaches zero (works even if app is backgrounded)
 export async function scheduleCompletionNotification(secondsFromNow) {
-  return Notifications.scheduleNotificationAsync({
-    content: {
-      title: "Time's up!",
-      body: "Your Mupel Clock timer has finished.",
-      sound: "default",
-      channelId: "timer",
-    },
-    trigger: secondsFromNow > 0 ? { seconds: secondsFromNow } : null,
-  });
+    if (secondsFromNow <= 0) return null;
+      const fireDate = new Date(Date.now() + secondsFromNow * 1000);
+        return Notifications.scheduleNotificationAsync({
+            content: {
+                  title: "Time's up!",
+                        body: "Your Mupel Clock timer has finished.",
+                              sound: "default",
+                                    channelId: "timer",
+                                        },
+                                            trigger: fireDate,
+                                              });
+                                              }
 }
 
 export async function cancelScheduledNotification(id) {
