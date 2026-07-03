@@ -19,7 +19,7 @@ class FloatingOverlayModule : Module() {
 
     // Opens the system settings screen so the user can grant the permission manually
     Function("requestOverlayPermission") {
-      val context = appContext.reactContext ?: return@Function
+      val context = appContext.reactContext ?: return@Function null
       val intent = Intent(
         Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
         Uri.parse("package:${context.packageName}")
@@ -29,7 +29,7 @@ class FloatingOverlayModule : Module() {
 
     // Starts the floating bubble + foreground service with an initial countdown label
     Function("startOverlay") { label: String, seconds: Int ->
-      val context = appContext.reactContext ?: return@Function
+      val context = appContext.reactContext ?: return@Function null
       val intent = Intent(context, FloatingOverlayService::class.java).apply {
         action = FloatingOverlayService.ACTION_START
         putExtra(FloatingOverlayService.EXTRA_LABEL, label)
@@ -44,7 +44,7 @@ class FloatingOverlayModule : Module() {
 
     // Pushes an updated remaining-time label to the already-running bubble
     Function("updateOverlay") { label: String, seconds: Int ->
-      val context = appContext.reactContext ?: return@Function
+      val context = appContext.reactContext ?: return@Function null
       val intent = Intent(context, FloatingOverlayService::class.java).apply {
         action = FloatingOverlayService.ACTION_UPDATE
         putExtra(FloatingOverlayService.EXTRA_LABEL, label)
@@ -54,7 +54,7 @@ class FloatingOverlayModule : Module() {
     }
 
     Function("stopOverlay") {
-      val context = appContext.reactContext ?: return@Function
+      val context = appContext.reactContext ?: return@Function null
       context.stopService(Intent(context, FloatingOverlayService::class.java))
     }
 
