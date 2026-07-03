@@ -13,7 +13,8 @@ class FloatingOverlayModule : Module() {
 
     // Whether the user has granted "Display over other apps"
     Function("hasOverlayPermission") {
-      Settings.canDrawOverlays(appContext.reactContext)
+            val context = appContext.reactContext ?: return@Function false
+                  Settings.canDrawOverlays(context)
     }
 
     // Opens the system settings screen so the user can grant the permission manually
