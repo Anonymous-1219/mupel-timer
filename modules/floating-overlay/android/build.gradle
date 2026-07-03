@@ -1,14 +1,20 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'expo-module-gradle-plugin'
+
+def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
+apply from: expoModulesCorePlugin
+applyKotlinExpoModulesCorePlugin()
+
+group = 'com.mupel.floatingoverlay'
+version = '1.0.0'
 
 android {
   namespace "com.mupel.floatingoverlay"
-  defaultConfig {
-    minSdkVersion 24
-  }
-}
+    defaultConfig {
+        minSdkVersion 24
+          }
+          }
 
-dependencies {
-  implementation project(':expo-modules-core')
-}
+          dependencies {
+            implementation project(':expo-modules-core')
+            }
