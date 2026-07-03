@@ -31,11 +31,12 @@
           "color": "#7C4DFF"
         }
       ],
-      "./plugins/withFloatingOverlay.js"
+      "./plugins/withFloatingOverlay.js",
+      "expo-asset"
     ],
     "extra": {
       "eas": {
-        "projectId": "REPLACE_WITH_YOUR_EAS_PROJECT_ID"
+        "projectId": "ec489416-f1c9-4cc9-821f-e26214b69d65"
       }
     }
   }
