@@ -116,9 +116,13 @@ export default function TimerScreen() {
     } catch (e) {
       // sound file missing until added by developer — safe to ignore in dev
     }
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    for (let i = 0; i < 3; i++) {
-      setTimeout(() => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy), i * 400);
+    try {
+  Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+  for (let i = 0; i < 3; i++) {
+    setTimeout(() => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy), i * 400);
+    }
+  } catch (e) {
+  // vibration not critical — don't crash the app if it fails
     }
   };
 
