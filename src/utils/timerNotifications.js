@@ -52,7 +52,13 @@ export async function scheduleCompletionNotification(secondsFromNow) {
       sound: "default",
       channelId: "timer",
     },
-    trigger: secondsFromNow > 0 ? { seconds: secondsFromNow } : null,
+    trigger: secondsFromNow > 0
+      ? {
+          type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+          seconds: secondsFromNow,
+          repeats: false,
+        }
+      : null,
   });
 }
 
